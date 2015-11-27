@@ -2,9 +2,12 @@
 
 <h1>Listing Bids</h1>
   <% @events.each do |event| %>
-    <%= link_to event.id, event_path(event) %>
-    <%= event.title %>
-    <%= event.time %>
+    <% if event.active == false %>
+      <%= link_to event.id, event_path(event) %>
+      <%= event.title %>
+      <%= event.time %>
+    <% else %>
+      <%= puts "" %>
   <% end %>
 
 
