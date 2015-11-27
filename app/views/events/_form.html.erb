@@ -1,0 +1,23 @@
+<%= simple_form_for @event, :html => { :class => 'form-horizontal' } do |f| %>
+
+  <%= f.input :active %>
+  <%= error_span(@event[:active]) %>
+  <%= f.input :title %>
+  <%= error_span(@event[:title]) %>
+  <%= f.input :time %>
+  <%= error_span(@event[:time]) %>
+  <%= f.input :team1 %>
+  <%= error_span(@event[:team1]) %>
+  <%= f.input :team2 %>
+  <%= error_span(@event[:team2]) %>
+  <%= f.input :winner %>
+  <%= error_span(@event[:winner]) %>
+
+  <%= f.fields_for :bid do |f| %>
+    <%= f.input :correct %>
+  <% end %>
+ 
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                events_path, :class => 'btn btn-default' %>
+<% end %>
