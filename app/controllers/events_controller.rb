@@ -10,8 +10,6 @@ class EventsController < ApplicationController
   # GET /events/1
   # GET /events/1.json
   def show
-    @bids = @event.bids.all
-    @bid = @event.bid.build
   end
 
   # GET /events/new
