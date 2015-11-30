@@ -6,6 +6,7 @@ class BidsController < ApplicationController
   def index
     @bids = Bid.all
     @events = Event.all
+    @bid = Bid.new
   end
 
   # GET /bids/1
