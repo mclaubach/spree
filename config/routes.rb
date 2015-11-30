@@ -6,4 +6,3 @@ Rails.application.routes.draw do
  resources :events do
   resources :bids
 end
-end
