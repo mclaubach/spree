@@ -29,7 +29,7 @@ class BidsController < ApplicationController
   # POST /bids
   # POST /bids.json
   def create
-    @bid = @Bid.new(bid_params)
+    @bid = Bid.new(bid_params)
     @bid.user_id = current_user.id
     @event = Event.find(params[:event_id])
     respond_to do |format|
