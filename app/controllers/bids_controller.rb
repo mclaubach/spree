@@ -17,6 +17,7 @@ class BidsController < ApplicationController
 
   # GET /bids/new
   def new
+    @event = Event.find(params[:event_id])
     @bid = Bid.new
   end
 
