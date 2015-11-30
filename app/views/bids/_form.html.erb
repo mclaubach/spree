@@ -1,11 +1,9 @@
 <%= simple_form_for [@event,@bid] do |f| %>
 
-  <div class="form-inputs">
-    <%= f.input :user_choice %>
-  </div>
+  <%= f.input :user_choice %>
+  <%= error_span(@event[:user_choice]) %>
 
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
-
+  <%= f.button :submit, :class => 'btn-primary' %>
+  <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                event_bids_path, :class => 'btn btn-default' %>
 <% end %>
