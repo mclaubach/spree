@@ -10,3 +10,13 @@
   </div>
 
 <% end %>
+
+  <% @events.each do |event| %>
+    <% if event.active == true %>
+      <%= link_to event.id, event_path(event) %>
+      <%= event.title %>
+      <%= event.time %>
+    <% else %>
+      <%= puts "" %>
+    <% end %>
+  <% end %>
