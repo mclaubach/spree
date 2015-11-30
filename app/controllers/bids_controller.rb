@@ -29,7 +29,7 @@ class BidsController < ApplicationController
   def create
     @bid = @event.bids.find(params[:id])
     @bid.user_id = current_user.id
-    @event = Event.all
+    @event = Event.find(params[:event_id])
     respond_to do |format|
       if @bid.save
         format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
