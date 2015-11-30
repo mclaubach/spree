@@ -1,3 +1,12 @@
+<h3>Bids</h3>
+
+<% @bids.each do |bid| %>
+	<div>
+		<%= bid.user_id %>
+		<%= bid.user_choice %>
+	<% end %>
+<%= render 'bids/form' %>
+
 <p>
   <strong>User:</strong>
   <%= @bid.user_id %>
