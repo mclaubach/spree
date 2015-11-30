@@ -12,8 +12,7 @@ class BidsController < ApplicationController
   # GET /bids/1.json
   def show
     @event = Event.find(params[:event_id])
-    @bid = @event.bids.find(params[:id])
-  end
+    @bid = Bid.new
 
   # GET /bids/new
   def new
