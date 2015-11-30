@@ -24,6 +24,7 @@
     <% @bids.each do |bid| %>
       <tr>
         <td><%= bid.user_id %></td>
+        <td><%= bid.event.id %></td>
         <td><%= link_to 'Show', bid %></td>
         <td><%= link_to 'Edit', edit_bid_path(bid) %></td>
         <td><%= link_to 'Destroy', bid, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -5,7 +5,7 @@ class BidsController < ApplicationController
   # GET /bids.json
   def index
     @bids = Bid.all
-    @event = Event.all
+    @events = Event.all
   end
 
   # GET /bids/1
@@ -71,6 +71,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:user_id)
+      params.require(:bid).permit(:user_id, event_attributes: [:event_id])
     end
 end
