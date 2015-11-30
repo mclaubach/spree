@@ -6,6 +6,8 @@
       <%= link_to event.id, event_path(event) %>
       <%= event.title %>
       <%= event.time %>
+      <%= event.bids.each do |bid| %>
+        <%= bid.user_choice %>
     <% else %>
       <%= puts "" %>
     <% end %>
@@ -21,15 +23,6 @@
   </thead>
 
   <tbody>
-    <% @event.bids.each do |bid| %>
-      <tr>
-        <td><%= bid.user_id %></td>
-        <td><%= bid.event_id %></td>
-        <td><%= link_to 'Show', event_bid(@event, @bid) %></td>
-        <td><%= link_to 'Edit', edit_event_bid(@event, @bid) %></td>
-        <td><%= link_to 'Destroy', bid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
   </tbody>
 </table>
 
