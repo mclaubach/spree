@@ -26,7 +26,7 @@
         <td><%= bid.user_id %></td>
         <td><%= bid.event_id %></td>
         <td><%= link_to 'Show', bid %></td>
-        <td><%= link_to 'Edit', edit_event_bid_path(@event, @bid) %></td>
+        <td><%= link_to 'Edit', edit_event_bid(@event, @bid) %></td>
         <td><%= link_to 'Destroy', bid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
@@ -36,4 +36,4 @@
 
 <br>
 
-<%= link_to 'New Bid', new_bid_path %>
+<%= link_to 'New Bid', new_event_bid %>
