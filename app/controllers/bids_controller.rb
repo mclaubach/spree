@@ -77,6 +77,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:user_id, event_attributes: [:event_id])
+      params.require(:bid).permit(:user_id, :user_choice, :evemt_id, :correct)
     end
 end
