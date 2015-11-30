@@ -8,6 +8,7 @@
       <%= event.time %>
       <%= event.bids.each do |bid| %>
         <%= bid.user_choice %>
+        <% end %>
     <% else %>
       <%= puts "" %>
     <% end %>
