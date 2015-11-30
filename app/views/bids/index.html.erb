@@ -21,11 +21,11 @@
   </thead>
 
   <tbody>
-    <% @bids.each do |bid| %>
+    <% @events.bids.each do |bid| %>
       <tr>
         <td><%= bid.user_id %></td>
         <td><%= bid.event_id %></td>
-        <td><%= link_to 'Show', event_bid %></td>
+        <td><%= link_to 'Show', event_bid(@event, @bid) %></td>
         <td><%= link_to 'Edit', edit_event_bid(@event, @bid) %></td>
         <td><%= link_to 'Destroy', bid, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
