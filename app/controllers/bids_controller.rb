@@ -20,12 +20,14 @@ class BidsController < ApplicationController
 
   # GET /bids/1/edit
   def edit
+    @event = Event.find(params[:event_id])
+    @bid = @event.bids.find(params[:id])
   end
 
   # POST /bids
   # POST /bids.json
   def create
-    @bid = Bid.new(bid_params)
+    @bid = @event.bids.find(params[:id])
     @bid.user_id = current_user.id
     @event = Event.all
     respond_to do |format|
@@ -42,6 +44,8 @@ class BidsController < ApplicationController
   # PATCH/PUT /bids/1
   # PATCH/PUT /bids/1.json
   def update
+    @event = Event.find(params[:event_id])
+    @bid = @event.bids.find(params[:id])
     respond_to do |format|
       if @bid.update(bid_params)
         format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
