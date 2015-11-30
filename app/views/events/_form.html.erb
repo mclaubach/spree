@@ -14,7 +14,7 @@
   <%= error_span(@event[:winner]) %>
 
   <%= f.fields_for :bid do |f| %>
-    <%= f.input :correct %>
+    <%= f.input :user_choice %>
   <% end %>
  
   <%= f.button :submit, :class => 'btn-primary' %>
