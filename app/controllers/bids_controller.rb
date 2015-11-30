@@ -5,7 +5,7 @@ class BidsController < ApplicationController
   # GET /bids.json
   def index
     @bids = Bid.all
-    @events = Event.all
+    @event = Event.all
   end
 
   # GET /bids/1
@@ -27,7 +27,7 @@ class BidsController < ApplicationController
   def create
     @bid = Bid.new(bid_params)
     @bid.user_id = current_user.id
-    @events = Event.all
+    @event = Event.all
     respond_to do |format|
       if @bid.save
         format.html { redirect_to @bid, notice: 'Bid was successfully created.' }
