@@ -4,8 +4,6 @@
   <% @events.each do |event| %>
     <% if event.active == true %>
       <%= link_to event.id, event_path(event) %>
-      <%= event.title %>
-      <%= event.time %>
       <%= event.bids.each do |bid| %>
         <%= bid.user_choice %>
         <% end %>
