@@ -1,5 +1,6 @@
-<%= form_for :bid, @event.bids.new do |f| %>
+<%= simple_form_for(@bid) do |f| %>
   <%= f.error_notification %>
+
   <div class="form-inputs">
     <%= f.input :user_choice %>
   </div>
