@@ -32,7 +32,7 @@ class BidsController < ApplicationController
     @bid = Bid.new(bid_params)
     @bid.user_id = current_user.id
     @event = Event.find(params[:event_id])
-    @bid.event = event.id
+    @bid.event = @event
     respond_to do |format|
       if @bid.save
         format.html { redirect_to event_bids_path, notice: 'Bid was successfully created.' }
