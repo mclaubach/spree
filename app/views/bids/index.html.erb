@@ -1,12 +1,7 @@
 <h1>Listing Bids</h1>
   <% @events.each do |event| %>
-    <% if event.active == true %>
-      <%= event.title %>
       <%= event.bids.each do |bid| %>
         <%= bid.user_choice %>
-        <% end %>
-    <% else %>
-      <%= puts "" %>
     <% end %>
   <% end %>
 
