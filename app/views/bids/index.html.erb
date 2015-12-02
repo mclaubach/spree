@@ -1,7 +1,7 @@
 <h1>Listing Bids</h1>
   <% @events.each do |event| %>
     <% if event.active == true %>
-      <%= link_to event.id, event_path(event) %>
+      <%= event.title %>
       <%= event.bids.each do |bid| %>
         <%= bid.user_choice %>
         <% end %>
