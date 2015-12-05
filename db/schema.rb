@@ -11,10 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151113225044) do
+ActiveRecord::Schema.define(version: 20151126213205) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bids", force: :cascade do |t|
+    t.integer  "user_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_choice"
+    t.boolean  "correct"
+    t.integer  "event_id"
+  end
+
+  add_index "bids", ["event_id"], name: "index_bids_on_event_id", using: :btree
+  add_index "bids", ["user_id"], name: "index_bids_on_user_id", using: :btree
 
   create_table "events", force: :cascade do |t|
     t.text     "title"
@@ -25,6 +37,7 @@ ActiveRecord::Schema.define(version: 20151113225044) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean  "active"
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
@@ -54,5 +67,7 @@ ActiveRecord::Schema.define(version: 20151113225044) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "bids", "events"
+  add_foreign_key "bids", "users"
   add_foreign_key "events", "users"
 end
