@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151126213205) do
+ActiveRecord::Schema.define(version: 20151206031502) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "bids", force: :cascade do |t|
     t.integer  "user_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.integer  "user_choice"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.boolean  "correct"
     t.integer  "event_id"
+    t.integer  "choice_id"
   end
 
   add_index "bids", ["event_id"], name: "index_bids_on_event_id", using: :btree
@@ -31,8 +31,6 @@ ActiveRecord::Schema.define(version: 20151126213205) do
   create_table "events", force: :cascade do |t|
     t.text     "title"
     t.datetime "time"
-    t.string   "team1"
-    t.string   "team2"
     t.integer  "winner"
     t.integer  "user_id"
     t.datetime "created_at", null: false
@@ -41,6 +39,18 @@ ActiveRecord::Schema.define(version: 20151126213205) do
   end
 
   add_index "events", ["user_id"], name: "index_events_on_user_id", using: :btree
+
+  create_table "events_teams", force: :cascade do |t|
+    t.integer "event_id"
+    t.integer "team_id"
+  end
+
+  add_index "events_teams", ["event_id"], name: "index_events_teams_on_event_id", using: :btree
+  add_index "events_teams", ["team_id"], name: "index_events_teams_on_team_id", using: :btree
+
+  create_table "teams", force: :cascade do |t|
+    t.text "title"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

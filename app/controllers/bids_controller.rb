@@ -8,6 +8,19 @@ class BidsController < ApplicationController
     @events = Event.all
   end
 
+  # POST /bids/make
+  def make
+    bid = Bid.where(event_id: params[:event_id], user: current_user).first_or_create
+    bid.update(bid_params)
+    respond_to do |format|
+      if bid.save
+        format.json { render json: bid, status: :created }
+      else
+        format.json { render json: bid.errors, status: :unprocessable_entity }
+      end
+    end
+  end
+
   # GET /bids/1
   # GET /bids/1.json
   def show
@@ -30,9 +43,9 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(bid_params)
-    @bid.user_id = current_user.id
-    @event = Event.find(params[:event_id])
-    @bid.event = @event
+    #@bid.user_id = current_user.id
+    #@event = Event.find(params[:event_id])
+    #@bid.event = @event
     respond_to do |format|
       if @bid.save
         format.html { redirect_to event_bids_path, notice: 'Bid was successfully created.' }
@@ -47,8 +60,8 @@ class BidsController < ApplicationController
   # PATCH/PUT /bids/1
   # PATCH/PUT /bids/1.json
   def update
-    @event = Event.find(params[:event_id])
-    @bid = @event.bids.find(params[:id])
+    #@event = Event.find(params[:event_id])
+    @bid = Bid.find(params[:id]) #@event.bids.find(params[:id])
     respond_to do |format|
       if @bid.update(bid_params)
         format.html { redirect_to @bid, notice: 'Bid was successfully updated.' }
@@ -78,6 +91,6 @@ class BidsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def bid_params
-      params.require(:bid).permit(:user_id, :user_choice, :event_id, :correct)
+      params.require(:bid).permit(:user_id, :user_choice, :event_id, :correct, :choice_id)
     end
 end

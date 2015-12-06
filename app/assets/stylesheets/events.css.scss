@@ -1,0 +1,33 @@
+.events {
+  margin-bottom: 25px;
+}
+
+.event {
+  float: left;
+  margin: 25px 0 0 25px;
+  display: block;
+  text-align: center;
+  width: 300px;
+  padding:20px;
+
+
+  border-radius: 2px 2px 2px 2px;
+  -webkit-box-shadow: 0 3px 2px #777;
+  -moz-box-shadow: 0 3px 2px #777;
+  box-shadow: 0 3px 2px #777;
+}
+
+.event:after {
+  clear: both;
+  content: ' ';
+  display: block;
+  font-size: 0;
+  line-height: 0;
+  visibility: hidden;
+}
+
+.selected-bid {
+  text-decoration: underline;
+}
+
+
