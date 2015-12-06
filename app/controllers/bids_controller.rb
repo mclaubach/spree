@@ -43,9 +43,6 @@ class BidsController < ApplicationController
   # POST /bids.json
   def create
     @bid = Bid.new(bid_params)
-    #@bid.user_id = current_user.id
-    #@event = Event.find(params[:event_id])
-    #@bid.event = @event
     respond_to do |format|
       if @bid.save
         format.html { redirect_to event_bids_path, notice: 'Bid was successfully created.' }
@@ -60,7 +57,6 @@ class BidsController < ApplicationController
   # PATCH/PUT /bids/1
   # PATCH/PUT /bids/1.json
   def update
-    #@event = Event.find(params[:event_id])
     @bid = Bid.find(params[:id]) #@event.bids.find(params[:id])
     respond_to do |format|
       if @bid.update(bid_params)
