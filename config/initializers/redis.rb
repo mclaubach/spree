@@ -9,10 +9,6 @@ class RedisInstance
   private
 
   def uri
-    if Rails.env.production?
-      ENV['REDISCLOUD_URL']
-    else
-      "redis://localhost:6379/"
-    end
+    URI.parse(ENV['REDISCLOUD_URL'] || "redis://localhost:6379/")
   end
 end
