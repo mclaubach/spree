@@ -1,0 +1,9 @@
+---
+:concurrency: 2
+:pidfile: tmp/pids/sidekiq.pid
+staging:
+  :concurrency: 3
+production:
+  :concurrency: 3
+:queues:
+  - default
