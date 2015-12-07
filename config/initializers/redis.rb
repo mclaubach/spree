@@ -3,19 +3,16 @@ class RedisInstance
   attr_reader :connection
 
   def initialize
-    @connection = Redis.new(configs)
+    @connection = Redis.new(:host => uri.host, :port => uri.port, :password => uri.password)
   end
 
   private
 
-  def configs
+  def uri
     if Rails.env.production?
-      {host: ENV['REDIS_PROVIDER'],
-       port: 11918,
-       password: ENV['REDIS_PASSWORD']}
+      ENV['REDISCLOUD_URL']
     else
-      {host: 'localhost',
-        port: 6379}
+      "redis://localhost:6379/"
     end
   end
 end
