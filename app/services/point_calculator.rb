@@ -1,4 +1,4 @@
-class PointCalculator < Struct.new(:user, :event, :bid)
+class PointCalculator < Struct.new(:event, :user)
   def perform!
     if picked_winner?
       if redis.exists(redis_key)
