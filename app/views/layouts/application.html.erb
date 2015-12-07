@@ -13,11 +13,13 @@
     <header>
       <%= render 'layouts/navigation' %>
     </header>
+    <div id="wrap">
     <main role="main">
       <%= render 'layouts/messages' %>
       <%= yield %>
       <%= render 'layouts/footerad' %>
     </main>
+    </div>
         <footer class="footer">
       <div class="container">
       <%= render 'layouts/footer' %>
