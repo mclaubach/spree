@@ -22,7 +22,7 @@ class PointCalculator
   private
 
   def redis_key
-    "spree:#{user.id}"
+    "spree:#{@user.id}"
   end
 
   def redis
