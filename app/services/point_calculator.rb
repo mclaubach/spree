@@ -2,6 +2,7 @@ class PointCalculator
   def initialize(event_id, user_id)
     @event = Event.find(event_id)
     @user = User.find(user_id)
+    @bid = Bid.where(event: @event, user: @user).first
   end
 
   def perform!
