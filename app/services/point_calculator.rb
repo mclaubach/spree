@@ -1,4 +1,9 @@
-class PointCalculator < Struct.new(:event, :user)
+class PointCalculator
+  def initialize(event_id, user_id)
+    @event = Event.find(event_id)
+    @user = User.find(user_id)
+  end
+
   def perform!
     if picked_winner?
       if redis.exists(redis_key)
@@ -10,7 +15,7 @@ class PointCalculator < Struct.new(:event, :user)
   end
 
   def picked_winner?
-    event.winner == bid.choice
+    @event.winner == @bid.choice
   end
 
   private
