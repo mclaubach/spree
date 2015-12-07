@@ -12,6 +12,8 @@ gem 'bugsnag'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'turbolinks'
+gem 'sidekiq'
+gem 'redis'
 
 group :development, :test do
   gem 'byebug'
