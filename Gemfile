@@ -13,6 +13,8 @@ gem 'bootstrap-sass'
 gem 'haml'
 gem 'turbolinks'
 gem 'dota', github: 'vinnicc/dota', branch: 'master'
+gem 'sidekiq'
+gem 'redis'
 
 group :development, :test do
   gem 'byebug'

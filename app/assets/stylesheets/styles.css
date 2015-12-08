@@ -12,6 +12,14 @@ html {
 
 /* custom theme */
 
+#wrap {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  /* 60 is footer size */
+  margin: 0 auto -60px;
+}
+
 header {
 	min-height:50px;
   	margin-bottom:5px;
@@ -153,6 +161,17 @@ h3.highlight  {
 .panel {
 	padding-left:27px;
     padding-right:27px;
+}
+
+/* footer */
+#push,
+#footer {
+  height: 60px;
+  background-color: #f5f5f5;
+}
+
+.footerlink {
+  margin: 25px 0;
 }
 
 /* end theme */
