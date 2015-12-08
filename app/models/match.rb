@@ -5,7 +5,6 @@ class Match < ActiveRecord::Base
     matches_arr = Dota.api.matches(player_id: myid, limit: count)
     if matches_arr && matches_arr.any?
       matches_arr.each do |match|
-        unless self.matches.where(uid: match.id).any?
           match_info = Dota.api.matches(match.id)
           new_match = self.matches.create({
                                             uid: match.id,

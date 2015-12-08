@@ -1,7 +1,7 @@
 class MatchesController < ApplicationController
 	
 def index
-	@match.load_matches!(10)
+	match.load_matches!(10)
 	@matches = matches.order('started_at DESC')
 end
 
