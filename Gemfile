@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.3'
+ruby '2.0.0'
 
 gem 'rails', '4.2.4'
 gem 'sass-rails', '~> 5.0'
@@ -12,6 +12,7 @@ gem 'bugsnag'
 gem 'bootstrap-sass'
 gem 'haml'
 gem 'turbolinks'
+gem 'dota', github: 'vinnicc/dota', branch: 'master'
 
 group :development, :test do
   gem 'byebug'
