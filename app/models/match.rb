@@ -1,6 +1,6 @@
 class Match < ActiveRecord::Base
 
- def load_matches!(count)
+ def self.load_matches!(count)
  	myid = 10671920
     matches_arr = Dota.api.matches(player_id: myid, limit: count)
     if matches_arr && matches_arr.any?
