@@ -1,6 +1,8 @@
 module ApplicationHelper
   def selected?(event, bids, team)
-    bid = bids.select{|bid| bid.event == event }.first
-    bid && bid.choice == team
+    if current_user
+      bid = bids.select{|bid| bid.event == event }.first
+      bid && bid.choice == team
+    end
   end
 end

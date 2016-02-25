@@ -5,8 +5,9 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-    @bids = current_user.bids
+    @events = Event.upcoming
+    @bids = Bid.where(event: @events, user: current_user)
+    #@bids = current_user.bids
   end
 
   # GET /events/1
