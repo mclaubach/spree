@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   mount Upmin::Engine => '/admin'
-  root to: 'visitors#index'
+  root to: 'events#index'
   devise_for :users
   resources :users
 

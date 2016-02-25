@@ -1,8 +1,7 @@
 .events
   %ul
-    .new= link_to 'new event', new_event_path
     - @events.each do |event|
-      .event{class: event.id}
+      %li.event{class: event.id}
         = link_to event.id, event_path(event)
         = event.title
         = event.time
@@ -11,6 +10,6 @@
           - event.teams.each do |team|
             - selected = selected?(event, @bids, team)
             .team{class: ('selected-bid' if selected)}
-              %a{href: '#', class: 'bid_create', id: team.id, onClick: "createBid(this, #{event.id}, #{team.id}, #{current_user.id})"}
+              %a{href: '#', class: 'bid_create', id: team.id, onClick: "createBid(this, #{event.id}, #{team.id})"}
                 = team.title
 

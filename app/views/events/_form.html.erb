@@ -6,17 +6,16 @@
   <%= error_span(@event[:title]) %>
   <%= f.input :time %>
   <%= error_span(@event[:time]) %>
-  <%= f.input :team1 %>
-  <%= error_span(@event[:team1]) %>
-  <%= f.input :team2 %>
-  <%= error_span(@event[:team2]) %>
+  <%= f.fields_for :teams do |team_fields| %>
+    <%= team_fields.input :team %>
+  <% end %>
   <%= f.input :winner %>
   <%= error_span(@event[:winner]) %>
 
   <%= f.fields_for :bid do |f| %>
     <%= f.input :user_choice %>
   <% end %>
- 
+
   <%= f.button :submit, :class => 'btn-primary' %>
   <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
                 events_path, :class => 'btn btn-default' %>
