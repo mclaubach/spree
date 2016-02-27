@@ -1,29 +1,38 @@
-.events {
-  margin-bottom: 25px;
-}
+// .events {
+//   margin-bottom: 25px;
+// }
+
+// .event {
+//   float: left;
+//   margin: 25px 0 0 25px;
+//   display: block;
+//   text-align: center;
+//   width: 300px;
+//   padding:20px;
+
+
+//   border-radius: 2px 2px 2px 2px;
+//   -webkit-box-shadow: 0 3px 2px #777;
+//   -moz-box-shadow: 0 3px 2px #777;
+//   box-shadow: 0 3px 2px #777;
+// }
+
+// .event:after {
+//   clear: both;
+//   content: ' ';
+//   display: block;
+//   font-size: 0;
+//   line-height: 0;
+//   visibility: hidden;
+// }
 
 .event {
-  float: left;
-  margin: 25px 0 0 25px;
-  display: block;
-  text-align: center;
-  width: 300px;
-  padding:20px;
-
-
-  border-radius: 2px 2px 2px 2px;
-  -webkit-box-shadow: 0 3px 2px #777;
-  -moz-box-shadow: 0 3px 2px #777;
-  box-shadow: 0 3px 2px #777;
+  border-radius: 4px;
+  drop-shadow: 10px 10px 5px #888888;
 }
 
-.event:after {
-  clear: both;
-  content: ' ';
-  display: block;
-  font-size: 0;
-  line-height: 0;
-  visibility: hidden;
+.container .events {
+  width: 20px;
 }
 
 .selected-bid {
