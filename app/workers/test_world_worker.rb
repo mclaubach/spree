@@ -4,7 +4,7 @@ class TestWorldWorker
   include Sidekiq::Worker
   include Sidetiq::Schedulable
 
-  #recurrence { minutely(15) }
+  recurrence { minutely(10) }
 
   def perform
     5.times do
