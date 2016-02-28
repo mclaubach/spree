@@ -15,6 +15,8 @@ gem 'turbolinks'
 gem 'dota', github: 'vinnicc/dota', branch: 'master'
 gem 'sidekiq'
 gem 'redis'
+gem 'bunny'
+gem 'sidetiq'
 
 group :development, :test do
   gem 'byebug'

@@ -4,20 +4,16 @@ class BidsController < ApplicationController
   # GET /bids
   # GET /bids.json
   def index
-    @bids = Bid.all
     @events = Event.all
+    @bids = Bid.where(event: @events)
+    #@stats = StatsPresenter.new(@events).total_stats
   end
 
   # POST /bids/make
   def make
-    bid = Bid.where(event_id: params[:event_id], user: current_user).first_or_create
-    bid.update(bid_params)
+    BidWorker.perform_async(current_user.id, params[:event_id], params[:choice_id])
     respond_to do |format|
-      if bid.save
-        format.json { render json: bid, status: :created }
-      else
-        format.json { render json: bid.errors, status: :unprocessable_entity }
-      end
+      format.json { render json: { status: :created } }
     end
   end
 
