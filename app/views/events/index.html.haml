@@ -2,7 +2,7 @@
   - @events.each do |event|
     .row.event
       .col-md-10
-        .event{class: event.id}
+        .event{class: "event-#{event.id}"}
           = link_to event.id, event_path(event)
           = event.title
           = event.time
@@ -15,7 +15,7 @@
                 .col-md-7.choice
                   = team.title
                 .col-md-1.percent-vote
-                  50%
+                  = (@stats[event.id][team.id] || '50')
                 .col-md-2.bid
                   - selected = selected?(event, @bids, team)
                   .team{class: ('selected-bid' if selected)}
