@@ -1,6 +1,6 @@
 class BidsController < ApplicationController
   before_action :set_bid, only: [:show, :edit, :update, :destroy]
-  before_action :require_user, only: [:make]
+  before_action :authenticate_user!, only: [:make]
 
   # GET /bids
   # GET /bids.json
