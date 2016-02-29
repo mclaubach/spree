@@ -1,0 +1,11 @@
+<p>matches</p>
+
+  <table class="table table-striped table-hover">
+    <% @matches.each do |match| %>
+      <tr>
+        <td>
+          <%= link_to match.started_at, match_path(match) %>
+        </td>
+      </tr>
+    <% end %>
+  </table>
