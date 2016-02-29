@@ -7,4 +7,10 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :bids
 
   scope :upcoming, -> { all }
+
+  after_update :process_results, if: :winner_changed?
+
+  def process_results
+    ResultsWorker.perform_async(self.id)
+  end
 end
