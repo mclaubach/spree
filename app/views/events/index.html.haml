@@ -1,24 +1,23 @@
 .container.events
   - @events.each do |event|
-    .row.event
-      .col-md-10
-        .event{class: "event-#{event.id}"}
-          = link_to event.id, event_path(event)
-          = event.title
-          = event.time
+    %table.table.table-bordered.event.table-hover
+      .event{class: "event-#{event.id}"}
+        = link_to event.id, event_path(event)
+        = event.title
+        = event.time
 
-          .teams
-            - event.teams.each do |team|
-              .row
-                .col-md-2.event-info
-                  starts at
-                .col-md-7.choice
-                  = team.title
-                .col-md-1.percent-vote
-                  = (@stats[event.id][team.id] || '50')
-                .col-md-2.bid
-                  - selected = selected?(event, @bids, team)
-                  .team{class: ('selected-bid' if selected)}
-                    %a{href: '#', class: 'bid_create', id: team.id, onClick: "createBid(this, #{event.id}, #{team.id})"}
-                      click
+        %tbody.teams
+          - event.teams.each do |team|
+            %tr.row
+              %th.col-md-2.event-info
+                starts at
+              %td.col-md-7.choice
+                = team.title
+              %td.col-md-1.percent-vote
+                = (@stats[event.id][team.id] || '50')
+              %td.col-md-2.bid
+                - selected = selected?(event, @bids, team)
+                .team{class: ('selected-bid' if selected)}
+                  %a{href: '#', class: 'bid_create', id: team.id, onClick: "createBid(this, #{event.id}, #{team.id})"}
+                    click
 
