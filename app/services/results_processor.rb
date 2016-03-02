@@ -4,6 +4,7 @@ class ResultsProcessor
   end
 
   def process!
+    return if bids.empty?
     insert_records!
     update_counters!
     LeaderboardWorker.perform_async
@@ -11,27 +12,31 @@ class ResultsProcessor
 
   def insert_records!
     records = format_bids
-    sql = "INSERT INTO results (`event_id`, `bid_id`, `user_id`, `correct`) VALUES #{records.join(", ")}"
+    sql = "INSERT INTO results (event_id, bid_id, user_id, correct, created_at, updated_at) VALUES #{records.join(", ")}"
     Result.connection.execute(sql)
   end
 
   def format_bids
-    @bids.map do |bid|
-      "(#{event.id}, #{bid.id}, #{bid.user_id}, #{winner?(bid)})"
+    bids.map do |bid|
+      "(#{event.id}, #{bid.id}, #{bid.user_id}, #{winner?(bid)}, '#{Time.now}', '#{Time.now}')"
     end
   end
 
   def winner?(bid)
-    bid.team_id == event.team_id
+    bid.choice_id == event.winner_id
   end
 
   def update_counters!
-    counter_update!(winners, true)
-    counter_update!(losers, false)
+    winner_counter_update!
+    loser_counter_update!
   end
 
-  def counter_update
-    UserCounter.where(user_id: winners).update_all("spree = spree + 1, wins = wins + 1, total_matches = total_matches + 1")
+  def winner_counter_update!
+    UserCounter.where(user_id: winners).update_all("spree = spree + 1, wins = wins + 1, total_bids = total_bids + 1")
+  end
+
+  def loser_counter_update!
+    UserCounter.where(user_id: losers).update_all("spree = 0, losses = losses + 1, total_bids = total_bids + 1")
   end
 
   private

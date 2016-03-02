@@ -7,5 +7,7 @@ class CreateUserCounters < ActiveRecord::Migration
       t.integer :total_bids
       t.integer :user_id
     end
+
+    add_index :user_counters, :user_id, unique: true
   end
 end

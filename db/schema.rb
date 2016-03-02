@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151207012510) do
+ActiveRecord::Schema.define(version: 20160302044758) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,9 +48,41 @@ ActiveRecord::Schema.define(version: 20151207012510) do
   add_index "events_teams", ["event_id"], name: "index_events_teams_on_event_id", using: :btree
   add_index "events_teams", ["team_id"], name: "index_events_teams_on_team_id", using: :btree
 
+  create_table "matches", force: :cascade do |t|
+    t.string   "uid"
+    t.string   "winner"
+    t.datetime "started_at"
+    t.string   "mode"
+    t.string   "match_type"
+    t.string   "duration"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "results", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "bid_id"
+    t.boolean  "correct"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "results", ["user_id"], name: "index_results_on_user_id", using: :btree
+
   create_table "teams", force: :cascade do |t|
     t.text "title"
   end
+
+  create_table "user_counters", force: :cascade do |t|
+    t.integer "spree",      default: 0
+    t.integer "wins",       default: 0
+    t.integer "losses",     default: 0
+    t.integer "total_bids", default: 0
+    t.integer "user_id"
+  end
+
+  add_index "user_counters", ["user_id"], name: "index_user_counters_on_user_id", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
