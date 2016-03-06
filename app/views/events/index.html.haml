@@ -1,23 +1,28 @@
 .container.events
-  - @events.each do |event|
-    %table.table.table-bordered.event.table-hover
-      .event{class: "event-#{event.id}"}
-        = link_to event.id, event_path(event)
-        = event.title
-        = event.time
+  .col-md-8
+    = render partial: 'datepicker'
 
-        %tbody.teams
-          - event.teams.each do |team|
-            %tr.row
-              %th.col-md-2.event-info
-                starts at
-              %td.col-md-7.choice
-                = team.title
-              %td.col-md-1.percent-vote
-                = (@stats[event.id][team.id] || '50')
-              %td.col-md-2.bid
-                - selected = selected?(event, @bids, team)
-                .team{class: ('selected-bid' if selected)}
-                  %a{href: '#', class: 'bid_create', id: team.id, onClick: "createBid(this, #{event.id}, #{team.id})"}
-                    click
+    - @events.each do |event|
+      %table.table.table-bordered.event.table-hover
+        .event{class: "event-#{event.id}"}
+          = link_to event.id, event_path(event)
+          = event.title
+          = event.time
+
+          %tbody.teams
+            - event.teams.each do |team|
+              %tr.row
+                %th.col-md-2.event-info
+                  starts at
+                %td.col-md-7.choice
+                  = team.title
+                %td.col-md-1.percent-vote
+                  = (@stats[event.id][team.id] || '50')
+                %td.col-md-2.bid
+                  - selected = selected?(event, @bids, team)
+                  .team{class: ('selected-bid' if selected)}
+                    %a{href: '#', class: 'bid_create', id: team.id, onClick: "createBid(this, #{event.id}, #{team.id})"}
+                      click
+  .col-md-4
+    = render partial: 'spree'
 

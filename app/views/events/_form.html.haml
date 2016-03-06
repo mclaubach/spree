@@ -1,0 +1,16 @@
+.container
+  .col-md-8
+    = simple_form_for @event, {html: {class: 'form-horizontal'}} do |f|
+      = f.input :active
+      = f.input :title
+      = f.input :time
+      = f.nested_fields_for :teams do |team|
+        = team.hidden_field :id
+        = team.input :title
+        = team.remove_nested_fields_link 'remove team'
+      = f.add_nested_fields_link :teams, 'add team'
+
+      = f.association :winner, collection: @event.teams, include_blank: true, value_method: :id
+      = f.button :submit, class: 'btn-primary'
+      = link_to t('.cancel', :default => t("helpers.links.cancel")), events_path, :class => 'btn btn-default'
+

@@ -5,7 +5,11 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
+    if params[:date].present?
+      @events = Event.where(time: Date.parse(params[:date]))
+    else
+      @events = Event.today
+    end
     @bids = Bid.where(event: @events)
     @stats = StatsPresenter.new(@events).total_stats
   end
@@ -19,6 +23,7 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    2.times { @event.teams.build }
   end
 
   # GET /events/1/edit
@@ -74,6 +79,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:title, :active, :time, :winner, :user_id, :team1, :team2, bid_attributes: [:event_id, :user_choice, :correct])
+      params.require(:event).permit(:title, :active, :time, :winner, :winner_id, :user_id, :team1, :team2, teams_attributes: [:title, :_destroy, :id])
     end
 end

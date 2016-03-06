@@ -31,6 +31,7 @@ gem 'devise'
 gem 'high_voltage'
 gem 'pg'
 gem 'simple_form'
+gem 'nested_form_fields'
 gem 'therubyracer', :platform=>:ruby
 gem 'unicorn'
 gem 'unicorn-rails'
