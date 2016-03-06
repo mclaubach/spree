@@ -6,7 +6,7 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if params[:date].present?
-      @events = Event.where(time: Date.parse(params[:date]))
+      @events = Event.where(time: (DateTime.parse(params[:date]).beginning_of_day..DateTime.parse(params[:date]).end_of_day))
     else
       @events = Event.today
     end

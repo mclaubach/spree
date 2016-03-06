@@ -9,7 +9,7 @@ class Event < ActiveRecord::Base
   accepts_nested_attributes_for :teams, allow_destroy: true
 
   scope :upcoming, -> { all }
-  scope :today, -> { where(time: Date.today) }
+  scope :today, -> { where(time: (DateTime.now.beginning_of_day..DateTime.now.end_of_day)) }
 
   after_update :process_results, if: :winner_id_changed?
 
