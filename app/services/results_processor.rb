@@ -7,7 +7,7 @@ class ResultsProcessor
     return if bids.empty?
     insert_records!
     update_counters!
-    LeaderboardWorker.perform_async
+    #LeaderboardWorker.perform_async
   end
 
   def insert_records!
