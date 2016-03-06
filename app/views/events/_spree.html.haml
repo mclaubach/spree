@@ -16,3 +16,17 @@
           %td
             = "total bids: #{counter.total_bids}"
 
+- counters = UserCounter.order('spree desc').limit(5)
+- ballers = User.where(id: counters.map(&:id))
+
+.row
+  %table.table
+    %tbody
+      %tr.row
+        %th.text-center
+          top 5 ballers
+      - ballers.each_with_index do |baller, idx|
+        %tr.row
+          %td
+            = "##{idx + 1}: #{baller.name}: spree of #{counters[idx].spree}"
+
