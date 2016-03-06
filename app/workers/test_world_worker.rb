@@ -45,8 +45,11 @@ class TestWorldWorker
     5.times do
       n1 = teams[rand(teams.size)]
       n2 = teams[rand(teams.size)]
+      while n1 == n2
+        n2 = teams[rand(teams.size)]
+      end
       random_team1 = Team.where(title: n1).first_or_create(title: n1)
-      random_team2 = Team.where(title: n1).first_or_create(title: n1)
+      random_team2 = Team.where(title: n2).first_or_create(title: n2)
       Event.create(teams: [random_team1, random_team2], title: 'who will win this baseball game', time: DateTime.now)
     end
 
