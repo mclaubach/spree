@@ -11,7 +11,7 @@
 
           %tbody.teams
             - event.teams.each do |team|
-              %tr.row
+              %tr.row{class: ('winner' if (event.winner_id == team.id))}
                 %th.col-md-2.event-info
                   starts at
                 %td.col-md-7.choice
