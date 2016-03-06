@@ -8,10 +8,9 @@
   <dd><%= @event.title %></dd>
   <dt><strong><%= model_class.human_attribute_name(:time) %>:</strong></dt>
   <dd><%= @event.time %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:team1) %>:</strong></dt>
-  <dd><%= @event.team1 %></dd>
-  <dt><strong><%= model_class.human_attribute_name(:team2) %>:</strong></dt>
-  <dd><%= @event.team2 %></dd>
+  <%- @event.teams.each do |team| %>
+    <dt><strong><%= team.title %>
+  <% end %>
   <dt><strong><%= model_class.human_attribute_name(:winner) %>:</strong></dt>
   <dd><%= @event.winner %></dd>
   <dt><strong><%= model_class.human_attribute_name(:user_id) %>:</strong></dt>
