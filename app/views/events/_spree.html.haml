@@ -1,17 +1,18 @@
-- counter = current_user.user_counter
+- if signed_in?
+  - counter = current_user.user_counter
 
-.row
-  %table.table
-    %tbody
-      %tr.row
-        %th.text-center
-          yr stats
-        %td
-          = "spree: #{counter.spree}"
-        %td
-          = "wins: #{counter.wins}"
-        %td
-          = "losses: #{counter.losses}"
-        %td
-          = "total bids: #{counter.total_bids}"
+  .row
+    %table.table
+      %tbody
+        %tr.row
+          %th.text-center
+            yr stats
+          %td
+            = "spree: #{counter.spree}"
+          %td
+            = "wins: #{counter.wins}"
+          %td
+            = "losses: #{counter.losses}"
+          %td
+            = "total bids: #{counter.total_bids}"
 
