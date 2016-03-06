@@ -11,7 +11,7 @@ class TestWorldWorker
     #   User.create!(email: "#{SecureRandom.hex}@example.com", name: 'john', password: 'joejoejoe', password_confirmation: 'joejoejoe')
     # end
 
-    TEAMS  = ["Boston Red Sox",
+    teams  = ["Boston Red Sox",
              "New York Yankees",
              "Arizona Diamondbacks",
              "Atlanta Braves",
@@ -43,8 +43,8 @@ class TestWorldWorker
              "Washington Nationals"]
 
     5.times do
-      random_team1 = Team.first_or_create(title: TEAMS[rand(TEAMS.size)])
-      random_team2 = Team.first_or_create(title: TEAMS[rand(TEAMS.size)])
+      random_team1 = Team.first_or_create(title: teams[rand(teams.size)])
+      random_team2 = Team.first_or_create(title: teams[rand(teams.size)])
       Event.create(teams: [random_team1, random_team2], title: 'who will win this baseball game', time: DateTime.now)
     end
 
