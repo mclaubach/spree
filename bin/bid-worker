@@ -1,0 +1,39 @@
+# bin/image-resizer-worker
+require "bunny"
+bunny = Bunny.new(ENV.fetch("AMQP_URL"))
+bunny.start
+at_exit { bunny.stop }
+
+channel = bunny.channel
+
+
+channel.prefetch(10)
+
+exchange = channel.exchange("bid", type: :direct, durable: true)
+queue = channel.queue("bid", durable: true)
+queue.bind(exchange)
+
+queue.subscribe(manual_ack: true, block: true) do |delivery_info, properties, payload|
+  begin
+    # do something
+
+    # Tell RabbitMQ we processed the message, in order to not see it again
+    channel.acknowledge(delivery_info.delivery_tag, false)
+
+  rescue ActiveRecord::RecordNotFound => _
+    STDERR.puts "Model does not exist: #{payload.inspect}"
+    # If the model is not in the database, we don't want to see this message again
+    channel.acknowledge(delivery_info.delivery_tag, false)
+
+  rescue Errno:ENOSPC => e
+    STDERR.puts "Ran out of disk space resizing #{payload.inspect}"
+    # Do NOT ack the message, in order to see it again at a later date
+    # This worker, or another one on another host, may have free space to
+    # process the image.
+
+  rescue RuntimeError => e
+    STDERR.puts "Failed to resize #{payload}: #{e.class} - #{e.message}"
+    # The fallback should probably be to ack the message.
+    channel.acknowledge(delivery_info.delivery_tag, false)
+  end
+end
