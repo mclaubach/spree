@@ -1,0 +1,7 @@
+%p#notice= notice
+
+= "#{@user_achievement.name}: #{@user_achievement.quantity_condition} #{@user_achievement.type_condition}"
+
+= link_to 'Edit', edit_user_achievement_path(@user_achievement)
+\|
+= link_to 'Back', user_achievements_path

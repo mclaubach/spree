@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160302044758) do
+ActiveRecord::Schema.define(version: 20160321012200) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "achievements", force: :cascade do |t|
+    t.integer  "user_achievement_id"
+    t.integer  "user_id"
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+  end
 
   create_table "bids", force: :cascade do |t|
     t.integer  "user_id"
@@ -70,8 +77,25 @@ ActiveRecord::Schema.define(version: 20160302044758) do
 
   add_index "results", ["user_id"], name: "index_results_on_user_id", using: :btree
 
+  create_table "shields", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "event_id"
+    t.integer  "bid_id"
+    t.string   "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "teams", force: :cascade do |t|
     t.text "title"
+  end
+
+  create_table "user_achievements", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "quantity_condition"
+    t.string   "type_condition"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
   end
 
   create_table "user_counters", force: :cascade do |t|

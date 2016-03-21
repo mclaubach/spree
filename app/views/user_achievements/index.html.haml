@@ -1,0 +1,20 @@
+%h1 Listing user_achievements
+
+%table
+  %thead
+    %tr
+      %th
+      %th
+      %th
+
+  %tbody
+    - @user_achievements.each do |user_achievement|
+      %tr
+        %td= "#{user_achievement.name}: #{user_achievement.quantity_condition} #{user_achievement.type_condition}"
+        %td= link_to 'Show', user_achievement
+        %td= link_to 'Edit', edit_user_achievement_path(user_achievement)
+        %td= link_to 'Destroy', user_achievement, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New User achievement', new_user_achievement_path

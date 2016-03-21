@@ -1,0 +1,14 @@
+= simple_form_for @user_achievement, {html: {class: 'form-horizontal'}} do |f|
+  = f.input :name
+  = f.input :quantity_condition
+  = f.input :type_condition, collection: achievement_types
+
+  - if @user_achievement.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(@user_achievement.errors.count, "error")} prohibited this user_achievement from being saved:"
+      %ul
+        - @user_achievement.errors.full_messages.each do |msg|
+          %li= msg
+
+  .actions
+    = f.submit 'Save'
