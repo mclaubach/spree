@@ -17,6 +17,7 @@ gem 'sidekiq'
 gem 'redis'
 gem 'bunny'
 gem 'sidetiq'
+gem "haml-rails", "~> 0.9"
 
 group :development, :test do
   gem 'byebug'
