@@ -1,20 +1,20 @@
 - if signed_in?
   - counter = current_user.user_counter
-
-  .row
-    %table.table
-      %tbody
-        %tr.row
-          %th.text-center
-            yr stats
-          %td
-            = "spree: #{counter.spree}"
-          %td
-            = "wins: #{counter.wins}"
-          %td
-            = "losses: #{counter.losses}"
-          %td
-            = "total bids: #{counter.total_bids}"
+  - if counter
+    .row
+      %table.table
+        %tbody
+          %tr.row
+            %th.text-center
+              yr stats
+            %td
+              = "spree: #{counter.spree}"
+            %td
+              = "wins: #{counter.wins}"
+            %td
+              = "losses: #{counter.losses}"
+            %td
+              = "total bids: #{counter.total_bids}"
 
 - counters = UserCounter.order('spree desc').limit(5)
 - ballers = User.where(id: counters.map(&:id))
