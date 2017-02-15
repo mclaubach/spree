@@ -16,4 +16,8 @@ class Event < ActiveRecord::Base
   def process_results
     ResultsWorker.perform_async(self.id)
   end
+
+  def ended?
+    winner_id
+  end
 end
